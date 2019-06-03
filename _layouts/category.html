@@ -1,0 +1,49 @@
+---
+layout: default
+---
+
+<div class="post">
+  {% for category in site.categories %}
+    <ul>
+      <li>
+        <h3>
+          <a href="#{{ category[0] | slugify }}">
+            {{ category[0] }}
+          </a>
+          <small>({{ category[1].size }})</small>
+        </h3>
+      </li>
+    </ul>
+  {% endfor %}
+</div>
+
+<div class="pagination"></div>
+
+<div class="post">
+  {% for category in site.categories %}
+    <h2 id="{{ category[0] | slugify }}">{{ category[0] }}</h2>
+    <ul class="posts-list">
+      {% for post in category[1] %}
+        <li>
+          <h3>
+            <a href="{{ post.url | prepend: site.baseurl }}">
+              {{ post.title }}
+            </a>
+            <small>{{ post.date | date_to_string }}</small>
+          </h3>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+</div>
+
+<div class="pagination">
+  {% if page.next.url %}
+    <a href="{{ page.next.url | prepend: site.baseurl }}" class="left arrow">&#8592;</a>
+  {% endif %}
+  {% if page.previous.url %}
+    <a href="{{ page.previous.url | prepend: site.baseurl }}" class="right arrow">&#8594;</a>
+  {% endif %}
+
+  <a href="#" class="top">Top</a>
+</div>
