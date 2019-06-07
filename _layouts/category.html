@@ -3,7 +3,8 @@ layout: default
 ---
 
 <div class="post">
-  {% for category in site.categories | sort %}
+  {% assign categories = site.categories | sort %}
+  {% for category in categories %}
     <ul>
       <li>
         <h3>
@@ -20,7 +21,8 @@ layout: default
 <div class="pagination"></div>
 
 <div class="post">
-  {% for category in site.categories | sort %}
+  {% assign categories = site.categories | sort %}
+  {% for category in categories %}
     <h2 id="{{ category | first | slugify }}">{{ category[0] }}</h2>
     <ul class="posts-list">
       {% for post in category[1] %}
