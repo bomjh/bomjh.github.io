@@ -3,14 +3,14 @@ layout: default
 ---
 
 <div class="post">
-  {% for category in site.categories %}
+  {% for category in site.categories | sort %}
     <ul>
       <li>
         <h3>
-          <a href="#{{ category[0] | slugify }}">
+          <a href="#{{ category | first | slugify }}">
             {{ category[0] }}
           </a>
-          <small>({{ category[1].size }})</small>
+          <small>({{ category | last | size }})</small>
         </h3>
       </li>
     </ul>
@@ -20,8 +20,8 @@ layout: default
 <div class="pagination"></div>
 
 <div class="post">
-  {% for category in site.categories %}
-    <h2 id="{{ category[0] | slugify }}">{{ category[0] }}</h2>
+  {% for category in site.categories | sort %}
+    <h2 id="{{ category | first | slugify }}">{{ category[0] }}</h2>
     <ul class="posts-list">
       {% for post in category[1] %}
         <li>
