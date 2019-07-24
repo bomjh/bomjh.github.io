@@ -10,7 +10,7 @@ categories: "Hooking"
 
 ## 동작 원리
 
-`zygote`이라고 불리는 Android Runtime의 핵심 프로세스가 있습니다. zygote은 `/system/bin/app_process`에서 시작되며, 모든 프로세스는 zygote의 fork를 통하여 생성됩니다. Xposed Framework를 설치하게 되면 app_process가 수정된 파일로 대체됩니다. 대체된 app_process는 zygote가 시작될 때 classpath에 Java 후킹을 지원하는 XposedBridge.jar를 추가합니다. jar에 포함된 `findAndHookMethod` 함수를 사용하여 후킹을 실행합니다.
+zygote라고 불리는 Android Runtime의 핵심 프로세스가 있습니다. zygote은 `/system/bin/app_process`에서 시작되며, 모든 프로세스는 zygote의 fork를 통하여 생성됩니다. Xposed Framework를 설치하게 되면 app_process가 수정된 파일로 대체됩니다. 대체된 app_process는 zygote가 시작될 때 classpath에 Java 후킹을 지원하는 XposedBridge.jar를 추가합니다. jar에 포함된 `findAndHookMethod` 함수를 사용하여 후킹을 실행합니다.
 
 ## 예제
 
@@ -61,14 +61,14 @@ public class Tutorial implements IXposedHookLoadPackage {
     		protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
     			// this will be called before the clock was updated by the original method
     		}
-        @Override
-  			protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-          // this will be called after the clock was updated by the original method
-  				TextView tv = (TextView) param.thisObject;
-  				String text = tv.getText().toString();
-  				tv.setText(text + " :)");
-  				tv.setTextColor(Color.RED);
-  			}
+    		@Override
+    		protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+    			// this will be called after the clock was updated by the original method
+    			TextView tv = (TextView) param.thisObject;
+    			String text = tv.getText().toString();
+    			tv.setText(text + " :)");
+    			tv.setTextColor(Color.RED);
+    		}
 	});
     }
 }
