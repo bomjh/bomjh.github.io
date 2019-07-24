@@ -8,9 +8,11 @@ categories: "Hooking"
 &nbsp;
 [Cydia Substrate](http://www.cydiasubstrate.com/)(이하 Cydia)는 Android와 iOS에서 인라인 후킹을 지원해주는 플랫폼입니다. 현재 공식적으로 Android 버전 4.3까지, iOS 버전 9.1까지 지원하고 있습니다. 하지만 공개된 소스코드가 있기 때문에 더 높은 Android 버전에서도 사용할 수 있고, armeabi, armeabi-v7a, x86 등 원하는 아키텍쳐 별로 라이브러리를 직접 만들 수도 있습니다.
 
+인라인 후킹은 일반적으로 사용되는 후킹 방법으로, 대상 함수에 대한 호출을 가로채어 자신이 원하는 동작을 수행한 다음 다시 대상 함수를 실행하는 기술입니다. 실제로 BlackMod, PlatinMods, GameModPro 등 여러 사이트에서 인라인 후킹을 사용하여 모드를 제작 및 배포하고 있습니다.
+
 ## 동작 원리
 
-인라인 후킹이란 대상 함수에 대한 호출을 가로채어 자신이 원하는 동작을 수행한 다음 다시 대상 함수를 실행하는 것으로, 일반적으로 사용되는 후킹 방법입니다.
+
 
 ![cydia1](https://raw.githubusercontent.com/bomjh/bomjh.github.io/master/assets/cydia1.png)
 _arm code in ida_
@@ -18,7 +20,7 @@ _arm code in ida_
 ![cydia2](https://raw.githubusercontent.com/bomjh/bomjh.github.io/master/assets/cydia2.png)
 _pseudo code in ida_
 
-위 사진과 같이, 대상 함수에서 자신이 만든 코드의 주소로 점프하여 원하는 동작을 수행하도록 합니다. Cydia에서는 이러한 기능을 `MSHookFunction` 함수를 사용하여 쉽게 구현할 수 있습니다. Native 코드로 작성한 예제입니다.
+위 사진과 같이, 대상 함수에서 자신이 만든 코드의 주소로 점프하여 원하는 동작을 수행하도록 합니다. Cydia에서는 이러한 기능을 `MSHookFunction` 함수를 사용하여 쉽게 구현할 수 있습니다. 아래는 JNI에서 작성한 예제입니다.
 
 ## Hook Native Code
 
