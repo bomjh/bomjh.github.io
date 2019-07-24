@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Inline Hook with Cydia Substrate"
+title:  "Cydia Substrate Android Inline Hook"
 author: "Bomjh"
 categories: "Hooking"
 ---
@@ -11,10 +11,10 @@ categories: "Hooking"
 
 인라인 후킹이란 대상 함수에 대한 호출을 가로채어 자신이 원하는 동작을 수행한 다음 다시 대상 함수를 실행하는 것으로, 일반적으로 사용되는 후킹 방법입니다.
 
-![cydia1]("/assets/cydia1.png")
+![cydia1]("https://github.com/bomjh/bomjh.github.io/blob/master/assets/cydia1.png")
 _arm code in ida_
 
-![cydia2]("/assets/cydia2.png")
+![cydia2]("https://github.com/bomjh/bomjh.github.io/blob/master/assets/cydia2.png")
 _pseudo code in ida_
 
 위 사진과 같이 대상 함수에서 자신이 만든 코드의 주소로 점프하여 원하는 동작을 수행하도록 합니다. Cydia에서는 `MSHookFunction` 함수를 사용하여 쉽게 구현할 수 있습니다.
@@ -26,12 +26,12 @@ _pseudo code in ida_
 &nbsp;
 {% highlight xml %}
 &lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
-&nbsp;&nbsp;&nbsp;&nbsp;android:installLocation="internalOnly"&gt;
+    android:installLocation="internalOnly"&gt;
 &nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;application android:hasCode="false"&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;/application&gt;
+    &lt;application android:hasCode="false"&gt;
+    &lt;/application&gt;
 &nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;uses-permission android:name="cydia.permission.SUBSTRATE"/&gt;
+    &lt;uses-permission android:name="cydia.permission.SUBSTRATE"/&gt;
 &lt;/manifest&gt;
 {% endhighlight %}
 &nbsp;
@@ -45,7 +45,7 @@ MSConfig(MSFilterExecutable, "/system/bin/app_process")
 &nbsp;
 // this is a macro that uses __attribute__((__constructor__))
 MSInitialize {
-&nbsp;&nbsp;&nbsp;&nbsp;// ... code to run when extension is loaded
+    // ... code to run when extension is loaded
 }
 {% endhighlight %}
 3. 코드 작성
@@ -59,16 +59,16 @@ symbol은 대상 함수의 주소이고, hook는 대체할 함수의 주소이�
 void \*(\*oldConnect)(int, const sockaddr \*, socklen_t);
 &nbsp;
 void \*newConnect(int socket, const sockaddr \*address, socklen_t length) {
-&nbsp;&nbsp;&nbsp;&nbsp;if (address->sa_family == AF_INET) {
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sockaddr_in \*address_in = address;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (address_in->sin_port == htons(6667)) {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sockaddr_in copy = \*address_in;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;address_in->sin_port = htons(7001);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return oldConnect(socket, &copy, length);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-&nbsp;&nbsp;&nbsp;&nbsp;}
+    if (address->sa_family == AF_INET) {
+          sockaddr_in \*address_in = address;
+        if (address_in->sin_port == htons(6667)) {
+            sockaddr_in copy = \*address_in;
+            address_in->sin_port = htons(7001);
+            return oldConnect(socket, &copy, length);
+        }
+    }
 &nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;return oldConnect(socket, address, length);
+    return oldConnect(socket, address, length);
 }
 &nbsp;
 MSHookFunction(&connect, &newConnect, &oldConnect);

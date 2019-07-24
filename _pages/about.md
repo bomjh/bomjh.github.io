@@ -5,4 +5,4 @@ author: "bomjh"
 permalink: /about/
 ---
 
-Study!!
+Mobile Security & Reverse Engineering
