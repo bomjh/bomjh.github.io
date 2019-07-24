@@ -22,7 +22,7 @@ _frida architecture_
 * frida 설치
 
 {% highlight bash %}
-pip install frida-tools
+$ pip install frida-tools
 {% endhighlight %}
 
 * [frida-server](https://github.com/frida/frida/releases) 다운로드
