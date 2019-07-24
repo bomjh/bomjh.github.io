@@ -12,10 +12,10 @@ categories: "Hooking"
 ## 동작 원리
 
 인라인 후킹이란 대상 함수에 대한 호출을 가로채어 자신이 원하는 동작을 수행한 다음 다시 대상 함수를 실행하는 것으로, 일반적으로 사용되는 후킹 방법입니다.
-<center>
+
 ![cydia1](https://raw.githubusercontent.com/bomjh/bomjh.github.io/master/assets/cydia1.png)
-</center>
 _arm code in ida_
+
 ![cydia2](https://raw.githubusercontent.com/bomjh/bomjh.github.io/master/assets/cydia2.png)
 _pseudo code in ida_
 
