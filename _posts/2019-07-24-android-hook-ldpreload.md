@@ -12,25 +12,18 @@ Android에서 모든 프로세스는 zygote의 fork를 통해서 생성되므로
 
 ## 적용 방법
 
-* `init` 프로세스에 attach
-
-ptrace를 사용하여 init 프로세스에 attach 합니다.
-
-* `zygote` 프로세스 kill
-
-SIGKILL 신호를 보냅니다. zygote이 죽으면 init에서 새로운 zygote을 생성합니다.
-
-* init 프로세스에서 fork 하는 순간을 포착
-
-새로운 zygote 프로세스를 찾습니다. 이 때, arm과 x86에서 사용되는 레지스터를 잘 확인하여 코드를 작성합니다.
-
-* 새로운 zygote에 attach
-
-ptrace를 사용하여 zygote 프로세스에 attach 합니다.
-
-* `execve` 시스템 콜을 호출하는 순간을 포착하여 환경변수 배열에 LD_PRELOAD 추가
-
-execve의 세 번째 인자가 환경변수 배열입니다.
+1. `init` 프로세스에 attach
+* ptrace를 사용하여 init 프로세스에 attach 합니다.
+2. `zygote` 프로세스 kill
+* SIGKILL 신호를 보냅니다.
+* zygote이 죽으면 init에서 새로운 zygote을 생성합니다.
+3. init 프로세스에서 fork 하는 순간을 포착
+* 새로운 zygote 프로세스를 찾습니다.
+* arm과 x86에서 사용되는 레지스터를 잘 확인하여 코드를 작성합니다.
+4. 새로운 zygote에 attach
+* ptrace를 사용하여 zygote 프로세스에 attach 합니다.
+5. `execve` 시스템 콜을 호출하는 순간을 포착하여 환경변수 배열에 LD_PRELOAD 추가
+* execve의 세 번째 인자가 환경변수 배열입니다.
 
 ## 실제 적용
 
