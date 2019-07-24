@@ -27,7 +27,6 @@ Android에서 모든 프로세스는 zygote의 fork를 통해서 생성되므로
 * ptrace를 사용하여 zygote 프로세스에 attach 합니다.
 
 5. `execve` 시스템 콜을 호출하는 순간을 포착하여 환경변수 배열에 LD_PRELOAD 추가
-
 * execve의 세 번째 인자가 환경변수 배열입니다.
 
 ## 실제 적용
