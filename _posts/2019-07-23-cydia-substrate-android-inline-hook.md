@@ -10,7 +10,7 @@ categories: "Hooking"
 
 인라인 후킹은 일반적으로 사용되는 후킹 방법으로, 대상 함수에 대한 호출을 가로채어 자신이 원하는 동작을 수행한 다음 다시 대상 함수를 실행하는 기술입니다. 실제로 BlackMod, PlatinMods, GameModPro 등 여러 사이트에서 인라인 후킹을 사용하여 모드를 제작 및 배포하고 있습니다.
 
-## 동작 원리
+## 작동 방식
 
 ![cydia1](https://raw.githubusercontent.com/bomjh/bomjh.github.io/master/assets/cydia1.png)
 _arm code in ida_
@@ -22,7 +22,9 @@ _pseudo code in ida_
 
 ## Hook Native Code
 
-* AndroidManifest 설정: 코드를 로드하려면 패키지에 `cydia.permission.SUBSTRATE` 권한이 있어야합니다.
+* AndroidManifest 설정
+
+코드를 로드하려면 패키지에 `cydia.permission.SUBSTRATE` 권한이 있어야합니다.
 
 {% highlight xml %}
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -34,7 +36,9 @@ _pseudo code in ida_
     <uses-permission android:name="cydia.permission.SUBSTRATE"/>
 </manifest>
 {% endhighlight %}
-* 라이브러리 설정: `MSConfig`로 코드를 로드할 위치를 지정하고, 라이브러리를 초기화하는 함수를 선언해야 합니다.
+* 라이브러리 설정
+
+`MSConfig`로 코드를 로드할 위치를 지정하고, 라이브러리를 초기화하는 함수를 선언해야 합니다.
 
 {% highlight cpp %}
 #include <substrate.h>
@@ -76,11 +80,17 @@ MSHookFunction(&connect, &newConnect, &oldConnect);
 
 ## Hook Java Code
 
-* AndroidManifest 설정: Native Code와 같습니다.
+* AndroidManifest 설정
 
-* 라이브러리 설정: Native Code와 같습니다.
+Native Code와 같습니다.
 
-* 클래스 참조: 먼저 해당 클래스를 참조해야 합니다. 해당 클래스가 로드될 때 실행할 수 있는 콜백이 제공됩니다.
+* 라이브러리 설정
+
+Native Code와 같습니다.
+
+* 클래스 참조
+
+먼저 해당 클래스를 참조해야 합니다. 해당 클래스가 로드될 때 실행할 수 있는 콜백이 제공됩니다.
 
 {% highlight cpp %}
 static void OnResources(JNIEnv *jni, jclass resources, void *data) {
@@ -92,7 +102,9 @@ MSInitialize {
 }
 {% endhighlight %}
 
-* 코드 작성: JNI 포인터를 사용하여 구현합니다.
+* 코드 작성
+
+JNI 포인터를 사용하여 구현합니다.
 
 {% highlight cpp %}
 static jint (*_Resources$getColor)(JNIEnv *jni, jobject _this, ...);
