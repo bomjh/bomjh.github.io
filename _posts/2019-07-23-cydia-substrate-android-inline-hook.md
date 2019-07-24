@@ -11,10 +11,10 @@ categories: "Hooking"
 
 인라인 후킹이란 대상 함수에 대한 호출을 가로채어 자신이 원하는 동작을 수행한 다음 다시 대상 함수를 실행하는 것으로, 일반적으로 사용되는 후킹 방법입니다.
 
-![cydia1]("https://github.com/bomjh/bomjh.github.io/blob/master/assets/cydia1.png")
+![cydia1](https://github.com/bomjh/bomjh.github.io/blob/master/assets/cydia1.png)
 _arm code in ida_
 
-![cydia2]("https://github.com/bomjh/bomjh.github.io/blob/master/assets/cydia2.png")
+![cydia2](https://github.com/bomjh/bomjh.github.io/blob/master/assets/cydia2.png)
 _pseudo code in ida_
 
 위 사진과 같이 대상 함수에서 자신이 만든 코드의 주소로 점프하여 원하는 동작을 수행하도록 합니다. Cydia에서는 `MSHookFunction` 함수를 사용하여 쉽게 구현할 수 있습니다.
@@ -23,40 +23,40 @@ _pseudo code in ida_
 
 * AndroidManifest 설정
 코드를 로드하려면 패키지에 `cydia.permission.SUBSTRATE` 권한이 있어야합니다.
-&nbsp;
+
 {% highlight xml %}
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     android:installLocation="internalOnly">
-&nbsp;
+
     <application android:hasCode="false">
     </application>
-&nbsp;
+
     <uses-permission android:name="cydia.permission.SUBSTRATE"/>
 </manifest>
 {% endhighlight %}
 * 라이브러리 설정
 `MSConfig`로 코드를 로드할 위치를 지정하고, 라이브러리를 초기화하는 함수를 선언해야 합니다.
-&nbsp;
+
 {% highlight cpp %}
 \#include <substrate.h>
-&nbsp;
+
 MSConfig(MSFilterExecutable, "/system/bin/app_process")
-&nbsp;
+
 // this is a macro that uses __attribute__((__constructor__))
 MSInitialize {
     // ... code to run when extension is loaded
 }
 {% endhighlight %}
 * 코드 작성
-&nbsp;
+
 {% highlight cpp %}
 void MSHookFunction(void *symbol, void *hook, void **old);
 {% endhighlight %}
 symbol은 대상 함수의 주소이고, hook는 대체할 함수의 주소이고, old는 대상 함수를 호출할 때 사용할 포인터입니다.
-&nbsp;
+
 {% highlight cpp %}
 void *(*oldConnect)(int, const sockaddr *, socklen_t);
-&nbsp;
+
 void *newConnect(int socket, const sockaddr *address, socklen_t length) {
     if (address->sa_family == AF_INET) {
           sockaddr_in *address_in = address;
