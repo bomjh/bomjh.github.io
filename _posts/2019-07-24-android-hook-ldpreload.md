@@ -6,17 +6,17 @@ categories: "Hooking"
 ---
 
 &nbsp;
-[LD_PRELOAD](http://man7.org/linux/man-pages/man8/ld.so.8.html)는 Linux에서 사용되는 환경변수로, 이 환경변수에 등록된 라이브러리들은 프로세스 실행 시 다른 라이브러리들이 로드되기 전에 우선적으로 로드합니다. 만약 우선적으로 로딩된 라이브러리의 함수 중에 이 후에 로드된 라이브러리의 함수와 이름이 동일한 함수가 있다면, 먼저 로딩된 라이브러리의 함수를 호출하게 됩니다.
+[LD_PRELOAD](http://man7.org/linux/man-pages/man8/ld.so.8.html)는 Linux에서 사용되는 환경변수로, 이 환경변수에 등록된 라이브러리들은 프로세스 실행 시 다른 라이브러리들이 로드되기 전에 우선적으로 로드됩니다. 만약 우선적으로 로딩된 라이브러리의 함수 중에 이 후에 로드된 라이브러리의 함수와 이름이 동일한 함수가 있다면, 먼저 로딩된 라이브러리의 함수를 호출하게 됩니다. 따라서 후킹과 같은 결과를 얻을 수 있습니다.
 
-Android에서 모든 프로세스는 zygote의 fork를 통해서 생성되기 때문에 zygote를 부모 프로세스로 가집니다. 그리고 zygote은 init 프로세스를 부모 프로세스로 가집니다. 자식 프로세스는 부모 프로세스의 환경변수를 그대로 물려받기 때문에, zygote에 LD_PRELOAD 환경변수를 설정해주면 그 후로 생성되는 모든 프로세스는 환경변수에 등록된 라이브러리가 삽입된 채로 실행됩니다.
+Android에서 모든 프로세스는 zygote의 fork를 통해서 생성되므로 zygote를 부모 프로세스로 가집니다. 그리고 zygote는 init 프로세스를 부모 프로세스로 가집니다. 부모 프로세스의 환경변수는 자식 프로세스에 그대로 물려주기 때문에, zygote에 LD_PRELOAD 환경변수를 설정해주면 그 후로 생성되는 모든 프로세스는 환경변수에 등록된 라이브러리가 삽입된 채로 실행됩니다.
 
 ## 적용 방법
 
-* init 프로세스에 attach
+* `init` 프로세스에 attach
 
 ptrace를 사용하여 init 프로세스에 attach 합니다.
 
-* zygote 프로세스 kill
+* `zygote` 프로세스 kill
 
 SIGKILL 신호를 보냅니다. zygote이 죽으면 init에서 새로운 zygote을 생성합니다.
 
@@ -26,7 +26,11 @@ SIGKILL 신호를 보냅니다. zygote이 죽으면 init에서 새로운 zygote�
 
 * 새로운 zygote에 attach
 
-* execve 시스템 콜을 포착하여 환경변수 배열에 LD_PRELOAD 추가
+ptrace를 사용하여 zygote 프로세스에 attach 합니다.
+
+* `execve` 시스템 콜을 호출하는 순간을 포착하여 환경변수 배열에 LD_PRELOAD 추가
+
+execve의 세 번째 인자가 환경변수 배열입니다.
 
 ## 실제 적용
 
@@ -38,9 +42,9 @@ _inject environ_
 새로운 zygote이 생성되었고 환경변수에 LD_PRELOAD가 추가된 것을 확인할 수 있습니다.
 
 ![ldpreload2](https://raw.githubusercontent.com/bomjh/bomjh.github.io/master/assets/ldpreload2.png)
-_check environ_
+_cat environ_
 
-환경변수에 등록된 라이브러리가 로드된 것을 확인할 수 있습니다.
+환경변수에 등록된 라이브러리가 로딩된 것을 확인할 수 있습니다.
 
 ![ldpreload3](https://raw.githubusercontent.com/bomjh/bomjh.github.io/master/assets/ldpreload3.png)
 _ld_preload_

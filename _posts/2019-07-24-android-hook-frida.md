@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Android Inline Hook: Frida"
+title: "Android Hook: Frida"
 author: "Bomjh"
 categories: "Hooking"
 ---

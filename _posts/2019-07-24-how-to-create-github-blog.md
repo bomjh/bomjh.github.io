@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Pagination Post"
-author: "Chester"
+title: "How to create GitHub Blog"
+author: "Bomjh"
 categories: "Git"
 ---
 
