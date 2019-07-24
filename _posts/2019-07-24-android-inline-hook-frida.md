@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Frida Android Inline Hook"
+title: "Android Inline Hook: Frida"
 author: "Bomjh"
 categories: "Hooking"
 ---
@@ -15,7 +15,7 @@ Frida는 zygote를 후킹하여 작동되고, 양방향 통신 채널을 통해 
 ![frida](https://raw.githubusercontent.com/bomjh/bomjh.github.io/master/assets/frida.png)
 _frida architecture_
 
-## 예제
+## 사용법 및 예제
 
 * Python 3.x 버전 설치
 
@@ -95,8 +95,6 @@ print('[*] Running CTF')
 script.load()
 sys.stdin.read()
 {% endhighlight %}
-
-* 코드 작성
 
 Native Code Hook
 

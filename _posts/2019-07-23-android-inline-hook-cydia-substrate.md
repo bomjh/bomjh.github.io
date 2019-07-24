@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Cydia Substrate Android Inline Hook"
+title:  "Android Inline Hook: Cydia Substrate"
 author: "Bomjh"
 categories: "Hooking"
 ---

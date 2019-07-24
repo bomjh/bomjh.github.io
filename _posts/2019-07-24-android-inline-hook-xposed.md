@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Xposed Android Inline Hook"
+title: "Android Inline Hook: Xposed"
 author: "Bomjh"
 categories: "Hooking"
 ---
