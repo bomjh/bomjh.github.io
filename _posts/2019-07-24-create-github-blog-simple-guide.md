@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to create GitHub Blog"
+title: "Create GitHub Blog Simple Guide"
 author: "Bomjh"
 categories: "Git"
 ---
@@ -40,6 +40,16 @@ $ git clone https://github.com/thelehhman/texture
 _clone jekyll theme_
 
 ## Theme 적용하기
+필요한 파일들을 수정합니다.
+
+{% highlight markdown %}
+* _layouts: 레이아웃 html 폴더
+* _posts: 포스트 작성 폴더
+* _config.yml: 설정 변경
+* index.md: 첫 화면 설정
+* README.md: 소개
+{% endhighlight %}
+
 username.github.io 폴더를 원격 저장소로 사용하기 위해 초기화를 진행합니다.
 
 {% highlight bash %}
@@ -66,4 +76,4 @@ $ git commit -m "first commit"
 $ git push origin master
 {% endhighlight %}
 
-잠시 후 https://bomjh.github.io/ 주소로 접속하면 테마가 적용된 모습을 확인할 수 있습니다.
+잠시 후 [https://bomjh.github.io/](https://bomjh.github.io/) 주소로 접속하면 테마가 적용된 모습을 확인할 수 있습니다.
