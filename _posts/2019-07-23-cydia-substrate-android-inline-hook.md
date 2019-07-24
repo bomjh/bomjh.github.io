@@ -12,8 +12,6 @@ categories: "Hooking"
 
 ## 동작 원리
 
-
-
 ![cydia1](https://raw.githubusercontent.com/bomjh/bomjh.github.io/master/assets/cydia1.png)
 _arm code in ida_
 
