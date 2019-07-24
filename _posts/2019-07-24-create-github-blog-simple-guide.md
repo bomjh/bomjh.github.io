@@ -43,11 +43,11 @@ _clone jekyll theme_
 필요한 파일들을 수정합니다.
 
 {% highlight markdown %}
-* _layouts: 레이아웃 html 폴더
-* _posts: 포스트 작성 폴더
-* _config.yml: 설정 변경
-* index.md: 첫 화면 설정
-* README.md: 소개
+- _layouts: 레이아웃 html 폴더
+- _posts: 포스트 작성 폴더
+- _config.yml: 설정 변경
+- index.md: 첫 화면 설정
+- README.md: 소개
 {% endhighlight %}
 
 username.github.io 폴더를 원격 저장소로 사용하기 위해 초기화를 진행합니다.
