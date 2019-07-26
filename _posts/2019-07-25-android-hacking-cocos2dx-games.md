@@ -5,7 +5,7 @@ author: "Bomjh"
 categories: "Reversing"
 ---
 
-모바일 게임 엔진 중에 유니티 다음으로 가장 많이 사용되는 엔진이 Cocos2dx입니다. Cocos2dx는 게임에 사용되는 여러 기능을 지원해주고, 오픈 소스이기 때문에 자신이 원하는 기능을 수정할 수 있습니다. 그리고 C++로 제작하여 하나의 소스로 Android에서 사용하는 APK, iOS에서 사용하는 IPA 파일을 만들 수 있습니다. 아래 글은 자주 볼 수 있는 cocos2dcpp, cocos2dlua에 대한 내용입니다.
+Cocos2dx는 유니티 엔진 다음으로 모바일 게임에 가장 많이 사용되는 2d 엔진입니다. 자체적으로 게임에 사용되는 여러 기능들을 지원해주고, 오픈 소스이기 때문에 자신이 원하는 기능을 수정할 수 있습니다. 그리고 C++로 제작하여 하나의 소스 코드로 Android에서 사용하는 APK, iOS에서 사용하는 IPA 파일을 만들 수 있습니다. 아래 글은 자주 볼 수 있는 cocos2dcpp, cocos2dlua에 대한 내용입니다.
 
 ## cocos2dcpp
 
@@ -26,4 +26,4 @@ _lua_load_
 ![cocos3](https://raw.githubusercontent.com/bomjh/bomjh.github.io/master/assets/cocos3.png)
 _luaL_loadbuffer_
 
-Lua가 실행하는 코드의 각 부분을 chunk라고 합니다. 해당 함수를 후킹하여 복호화된 파일을 얻어낼 수 있고, 수정된 스크립트를 삽입할 수도 있습니다.
+Lua가 실행하는 코드의 각 부분을 chunk라고 합니다. 해당 함수를 후킹하여 복호화된 파일을 얻어낼 수 있고, 수정된 스크립트를 삽입할 수도 있습니다. 간혹 Unity 게임 중에도 Lua Script를 사용하는 게임이 있는데, 비슷한 방식으로 해킹이 가능합니다.
