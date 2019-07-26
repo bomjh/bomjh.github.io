@@ -31,4 +31,4 @@ _il2cppdumper_
 ![unity4](https://raw.githubusercontent.com/bomjh/bomjh.github.io/master/assets/unity4.png)
 _dump.cs_
 
-libil2cpp.so 파일과 global-metadata.dat 파일을 사용하여 DummyDll, dump.cs를 추출할 수 있습니다. 추출한 정보로 IDA를 통해서 코드를 분석하고 Winhex와 같은 Hex Editor를 사용하여 Hex값을 수정하거나, 후킹에 이용할 수 있습니다. 실제로 il2cpp 게임의 모드 APK를 보면 Hex값 수정보다는 후킹 기능이 있는 라이브러리를 삽입하는 방법을 많이 사용하는데, 직접 파일을 수정하여 공유하게 되면 다른 모드 사이트에서 쉽게 leech할 수 있기 때문이라고 추측하고 있습니다.
+libil2cpp.so 파일과 global-metadata.dat 파일을 사용하여 DummyDll, dump.cs를 추출할 수 있습니다. 추출한 정보로 IDA를 통해서 코드를 분석하고 Winhex와 같은 Hex Editor를 사용하여 Hex값을 수정하거나, 후킹에 이용할 수 있습니다. 실제로 il2cpp 게임의 모드 APK를 보면 Hex값 수정보다는 후킹 기능 또는 메모리 코드 패치 기능이 있는 라이브러리를 삽입하는 방법을 많이 사용하는데, 직접 파일을 수정하여 공유하게 되면 다른 모드 사이트에서 쉽게 leech할 수 있기 때문이라고 추측하고 있습니다.
