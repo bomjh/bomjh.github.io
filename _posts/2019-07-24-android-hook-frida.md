@@ -22,6 +22,7 @@ _frida architecture_
 * frida 설치
 
 {% highlight bash %}
+$ pip install frida
 $ pip install frida-tools
 {% endhighlight %}
 
