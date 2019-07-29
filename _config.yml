@@ -37,3 +37,7 @@ paginate:       10
 
 # Excludes
 exclude: [ Gemfile, Gemfile.lock, tale.gemspec ]
+
+# disqus
+disqus_url: bomjh
+disqus_id: bomjh
