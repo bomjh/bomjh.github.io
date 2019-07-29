@@ -25,6 +25,10 @@ comments: true
 
 </div>
 
+{% if page.comments != false %}
+  {% include disqus_comments.html %}
+{% endif %}
+
 <div class="pagination">
   {% if page.next.url %}
     <a href="{{ page.next.url | prepend: site.baseurl }}" class="left arrow">&#8592;</a>
@@ -35,7 +39,3 @@ comments: true
 
   <a href="#" class="top">Top</a>
 </div>
-
-{% if page.comments != false %}
-  {% include disqus_comments.html %}
-{% endif %}
