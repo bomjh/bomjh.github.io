@@ -1,5 +1,6 @@
 ---
 layout: default
+comments: true
 ---
 
 <div class="post">
@@ -34,3 +35,7 @@ layout: default
 
   <a href="#" class="top">Top</a>
 </div>
+
+{% if page.comments != false %}
+  {% include disqus_comments.html %}
+{% endif %}

@@ -3,7 +3,6 @@ layout: post
 title:  "Android Hook: Cydia Substrate"
 author: "Bomjh"
 categories: "Hooking"
-comments: true
 ---
 
 &nbsp;
